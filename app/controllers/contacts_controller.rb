@@ -39,18 +39,17 @@ class ContactsController < ApplicationController
 
   def update
     @contact = Contact.find_by(id: params[:id])
-    Contact.update(@contact,
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      phone: params[:phone]
-    )
+     Contact.update(@contact,
+       first_name: params[:first_name],
+       last_name: params[:last_name],
+       email: params[:email],
+       phone: params[:phone]
+     ) 
     render "update.html.erb"
   end
 
   def destroy
-        @contact = Contact.find_by(id: params[:id])
-
+    @contact = Contact.find_by(id: params[:id])
     @contact.destroy
     render "destroy.html.erb"
   end

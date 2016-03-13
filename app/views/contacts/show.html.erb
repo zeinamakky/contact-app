@@ -11,3 +11,8 @@
 <p>&nbsp;</p>
 <p><a href="/contacts/<%=@contact.id%>/edit">Edit this contact</a></p>
 <%= link_to "Delete this contact", "/contacts/#{@contact.id}", method: :delete %>
+<!--
+method: :delete points to the route. 
+The route points to =>contacts#destroy
+That points to the method in the controller.
+-->

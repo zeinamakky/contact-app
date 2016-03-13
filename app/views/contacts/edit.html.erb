@@ -1,5 +1,5 @@
 <h1> Update this listing </h1>
-<%= form_tag '/contacts/:id', method: :patch do %>
+<%= form_tag "/contacts/#{@contact.id}", method: :patch do %>
   <div>
   <%= label_tag :first_name, "First name" %>
   <%= text_field_tag :first_name, @contact.first_name %>
