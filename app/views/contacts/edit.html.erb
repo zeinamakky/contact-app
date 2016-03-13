@@ -1,0 +1,25 @@
+<h1> Update this listing </h1>
+<%= form_tag '/contacts/:id', method: :patch do %>
+  <div>
+  <%= label_tag :first_name, "First name" %>
+  <%= text_field_tag :first_name, @contact.first_name %>
+  </div>
+   <div>
+  <%= label_tag :last_name, "Last name" %>
+  <%= text_field_tag :last_name, @contact.last_name %>
+  </div>
+  
+  <div>
+  <%= label_tag :email, "Email" %>
+  <%= text_field_tag :email, @contact.email %>
+  </div>
+
+  <div>
+  <%= label_tag :phone, "Phone" %>
+  <%= text_field_tag :phone, @contact.phone %>
+  </div>
+  
+  <div>
+    <%= submit_tag "Edit info" %>
+  </div>
+<% end %>
