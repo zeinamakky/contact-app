@@ -1,11 +1,18 @@
 <h1>
-<%= @contact.first_name %> <%= @contact.last_name %> 
+  <%= @contact.first_name %> <%= @contact.middle_name %> <%= @contact.last_name %> 
 </h1>
+<h4>
+<%= @contact.show_groups %>
+</h4>
 <p>
-<%= @contact.email %> 
+  <%= @contact.email %> 
 </p>
 <p>
-<%= @contact.phone %> 
+  <%= @contact.phone %> 
+</p>
+<p>
+  <%= @contact.bio %> 
+
 </p>
 
 <p>&nbsp;</p>

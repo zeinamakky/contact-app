@@ -1,12 +1,25 @@
-
-
 <h1>all contacts</h1>
-<% @contacts.each do |person| %>
-  <p><b>NAME: </b> <a href="/contacts/<%= person.id %>"><%= person.first_name %> <%= person.last_name %></a></p>
-  <p><b>EMAIL: </b><%= person.email %></p>
-  <p><b>PHONE: </b> <%= person.phone %></p>
+<h3>Groups:</h3> 
+<h4> 
+<% Category.all.each do |category|%>
+  <a href="/contacts?category=<%= category.name %>"><%= category.name %></a> |
+<% end %>
+</h4>
+<% if current_user != nil %>
+<% @contacts.each do |contact| %>
+  <p><b>NAME: </b> <a href="/contacts/<%= contact.id %>"><%= contact.first_name %> <%= contact.middle_name %> <%= contact.last_name %></a></p>
+  <p><b>EMAIL: </b><%= contact.email %></p>
+  <p><b>PHONE: </b> <%= contact.japan_phone %></p>
+
+  <!-- <p>< = contact.coordinates  ></p> -->
   <hr>
    <% end %>
+<% else %>
+
+<p>No contacts for you</p>
+
+<% end %>
+
 
 
 

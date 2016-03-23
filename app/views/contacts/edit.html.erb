@@ -1,25 +1,54 @@
 <h1> Update this listing </h1>
-<%= form_tag "/contacts/#{@contact.id}", method: :patch do %>
-  <div>
-  <%= label_tag :first_name, "First name" %>
-  <%= text_field_tag :first_name, @contact.first_name %>
-  </div>
-   <div>
-  <%= label_tag :last_name, "Last name" %>
-  <%= text_field_tag :last_name, @contact.last_name %>
-  </div>
+<%= form_tag "/contacts/#{@contact.id}", class: "form-horizontal", method: :patch do %>
   
-  <div>
-  <%= label_tag :email, "Email" %>
-  <%= text_field_tag :email, @contact.email %>
+
+  <div class="form-group">
+
+  <%= label_tag :first_name, "First name", class: "col-sm-2 control-label" %>
+  <%= text_field_tag :first_name, @contact.first_name, class: "col-sm-10" %>
+    
   </div>
 
-  <div>
-  <%= label_tag :phone, "Phone" %>
-  <%= text_field_tag :phone, @contact.phone %>
+  <div class="form-group">
+
+  <%= label_tag :middle_name, "Middle name", class: "col-sm-2 control-label" %>
+  <%= text_field_tag :middle_name, @contact.middle_name, class: "col-sm-10" %>
+    
   </div>
-  
-  <div>
-    <%= submit_tag "Edit info" %>
+
+  <div class="form-group">
+   
+  <%= label_tag :last_name, "Last name", class: "col-sm-2 control-label" %>
+  <%= text_field_tag :last_name, @contact.last_name, class: "col-sm-10" %>
+ 
+
+
   </div>
+  <div class="form-group">
+ 
+  <%= label_tag :email, "Email", class: "col-sm-2 control-label"  %>
+  <%= text_field_tag :email, @contact.email , class: "col-sm-10" %>
+
+
+  </div>
+  <div class="form-group">
+  <%= label_tag :phone, "Phone",class: "col-sm-2 control-label"  %>
+  <%= text_field_tag :phone, @contact.phone, class: "col-sm-10" %>
+  </div>
+    <div class="form-group">
+  <%= label_tag :address, "Address",class: "col-sm-2 control-label"  %>
+  <%= text_field_tag :address, "" , class: "col-sm-10" %>
+  </div>
+
+    <div class="form-group">
+  <%= label_tag :bio, "Bio", class: "col-sm-2 control-label"  %>
+  <%= text_field_tag :bio, @contact.bio, class: "col-sm-10" %>
+  </div>
+    <div class="form-group">
+
+    <div class="col-sm-offset-2 col-sm-10">
+  <%= submit_tag "Edit info" %>    
+  </div>
+  </div>
+
 <% end %>

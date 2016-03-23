@@ -2,15 +2,19 @@ class ContactsController < ApplicationController
   attr_reader :first_name, :last_name, :email, :phone
 
   def index
-   
-    @contacts = Contact.all
+    if current_user && params[:category]
+      
+      @contacts = Category.find_by(name: params[:category]).contacts
+      
+      render "index.html.erb"
+    
+    elsif current_user
+      @contacts = current_user.contacts
+      render "index.html.erb"
 
-    # @all_contacts
-    # @contacts.each do |person| 
-    #    person = "Name: #{person.first_name} #{person.last_name}, Email: #{person.email}, Phone: #{person.phone}"
-    # @all_contacts << person
-    # end
-    render "index.html.erb"
+    else 
+      redirect_to '/users/sign_up'
+    end    
   end
 
   def new
@@ -18,13 +22,24 @@ class ContactsController < ApplicationController
   end
 
   def create
+    address = params[:address]
+    if address == nil
+      address = "123 North ave."
+    end
+    coordinates = Geocoder.coordinates(address)
+
     Contact.create(
       first_name: params[:first_name],
+      middle_name: params[:middle_name],
       last_name: params[:last_name],
       email: params[:email],
-      phone: params[:phone]
+      phone: params[:phone],
+      latitude: coordinates[0],
+      longitude: coordinates[1],
+      bio: params[:bio],
+      user_id: current_user.id
     )
-    render "create.html.erb"
+    redirect_to "/contacts/#{params[:id]}"
   end
 
   def show
@@ -38,19 +53,29 @@ class ContactsController < ApplicationController
   end
 
   def update
+    address = params[:address]
+    if address == nil
+      address = "123 North ave."
+    end
+    coordinates = Geocoder.coordinates(address)
+
     @contact = Contact.find_by(id: params[:id])
      Contact.update(@contact,
-       first_name: params[:first_name],
-       last_name: params[:last_name],
-       email: params[:email],
-       phone: params[:phone]
+      first_name: params[:first_name],
+      middle_name: params[:middle_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      phone: params[:phone],
+      latitude: coordinates[0],
+      longitude: coordinates[1],
+      bio: params[:bio]
      ) 
-    render "update.html.erb"
+    redirect_to "/contacts/#{params[:id]}"
   end
 
   def destroy
     @contact = Contact.find_by(id: params[:id])
     @contact.destroy
-    render "destroy.html.erb"
+    redirect_to "/contacts/"
   end
 end
