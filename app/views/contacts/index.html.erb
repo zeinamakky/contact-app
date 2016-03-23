@@ -1,10 +1,6 @@
 <h1>all contacts</h1>
-<h3>Groups:</h3> 
-<h4> 
-<% Category.all.each do |category|%>
-  <a href="/contacts?category=<%= category.name %>"><%= category.name %></a> |
-<% end %>
-</h4>
+
+
 <% if current_user != nil %>
 <% @contacts.each do |contact| %>
   <p><b>NAME: </b> <a href="/contacts/<%= contact.id %>"><%= contact.first_name %> <%= contact.middle_name %> <%= contact.last_name %></a></p>

@@ -1,15 +1,15 @@
 class ContactsController < ApplicationController
   attr_reader :first_name, :last_name, :email, :phone
 
-  def index
-    if current_user && params[:category]
-      
-      @contacts = Category.find_by(name: params[:category]).contacts
-      
-      render "index.html.erb"
-    
-    elsif current_user
+  def index 
+    if current_user
       @contacts = current_user.contacts
+      if params[:category]
+        @contacts = Category
+          .find_by(name: params[:category])
+          .contacts
+          .where(user_id: current_user.id)
+      end
       render "index.html.erb"
 
     else 
